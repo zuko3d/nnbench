@@ -32,8 +32,10 @@ print("Init mlp...")
 init_norm = Gaussian(loc=0.0, scale=0.1)
 
 layers = [
+            Affine(nout = 400, init=init_norm, activation=Tanh()),
             Affine(nout = 200, init=init_norm, activation=Tanh()),
-            Affine(nout = 100, init=init_norm, activation=Tanh()),
+            Affine(nout = 200, init=init_norm, activation=Tanh()),
+            Affine(nout = 200, init=init_norm, activation=Tanh()),
             Affine(nout = 100, init=init_norm, activation=Tanh())
          ]
 
@@ -53,7 +55,7 @@ ts = time.clock()
 mlp.fit(train, 
         callbacks=Callbacks(mlp),
         optimizer=optimizer,
-        num_epochs=100, 
+        num_epochs=10, 
         cost=cost
         )
 
